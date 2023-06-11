@@ -26,8 +26,17 @@ public class TripBooking{
     private int distanceInKm;
 
     @Enumerated(EnumType.STRING)
-    private TripStatus tripStatus;
+    private TripStatus status;
 
+    private int bill;
+
+    public int getBill() {
+        return bill;
+    }
+
+    public void setBill(int bill) {
+        this.bill = bill;
+    }
 
     @ManyToOne
     @JoinColumn
