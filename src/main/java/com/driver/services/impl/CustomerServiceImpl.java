@@ -1,5 +1,6 @@
 package com.driver.services.impl;
 
+import com.driver.model.Cab;
 import com.driver.model.TripBooking;
 import com.driver.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,12 +31,14 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public void register(Customer customer) {
 		//Save the customer in database
+		customerRepository2.save(customer);
 	}
 
 	@Override
 	public void deleteCustomer(Integer customerId) {
 		// Delete customer without using deleteById function
-
+		Customer customer = customerRepository2.findById(customerId).get();
+		customerRepository2.delete(customer);
 	}
 
 	@Override
@@ -50,7 +53,14 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public void cancelTrip(Integer tripId){
 		//Cancel the trip having given trip Id and update TripBooking attributes accordingly
+		TripBooking tripBooking = tripBookingRepository2.findById(tripId).get();
+		tripBooking.setStatus(TripStatus.CANCELED);
 
+		tripBooking.setBill(0);
+
+		Cab cab = tripBooking.getDriver().getCab();
+		cab.setAvailable(Boolean.TRUE);
+		driverRepository2.save(tripBooking.getDriver());
 	}
 
 	@Override
