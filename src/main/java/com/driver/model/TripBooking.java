@@ -28,6 +28,14 @@ public class TripBooking{
     @Enumerated(EnumType.STRING)
     private TripStatus status;
 
+    public TripStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(TripStatus status) {
+        this.status = status;
+    }
+
     private int bill;
 
     public int getBill() {
