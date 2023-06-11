@@ -88,14 +88,6 @@ public class TripBooking{
         this.distanceInKm = distanceInKm;
     }
 
-    public TripStatus getTripStatus() {
-        return tripStatus;
-    }
-
-    public void setTripStatus(TripStatus tripStatus) {
-        this.tripStatus = tripStatus;
-    }
-
     public Customer getCustomer() {
         return customer;
     }
